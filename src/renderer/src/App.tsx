@@ -1,37 +1,44 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import React, { useEffect, useState } from 'react'
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+
+// Type declaration for maskAPI
+declare global {
+  interface Window {
+    maskAPI?: {
+      onSetMaskVisibility: (callback: (value: boolean) => void) => void
+    }
+  }
+}
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  // Add visibility state
+  const [isMaskVisible, setIsMaskVisible] = useState(false)
+
+  useEffect(() => {
+    if (window.maskAPI && typeof window.maskAPI.onSetMaskVisibility === 'function') {
+      window.maskAPI.onSetMaskVisibility((value) => {
+        console.log('Mask visibility:', value)
+        setIsMaskVisible(value)
+      })
+    }
+  }, [])
 
   return (
-    <>
-      {/* <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions> */}
-      <div className="h-full w-full bg-amber-800 text-7xl">
-        hello world
-      </div>
-    </>
+    <HashRouter>
+      <div
+        className="fixed h-full w-full bg-black z-50"
+        style={{ display: isMaskVisible ? 'block' : 'none' }}
+      ></div>
+
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<div className="h-full w-full text-7xl">Home Page</div>} />
+        <Route path="/about" element={<div className="h-full w-full text-7xl">About Page</div>} />
+      </Routes>
+    </HashRouter>
   )
 }
 
