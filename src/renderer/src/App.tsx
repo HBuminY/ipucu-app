@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import routedPages, { RouteConfig, RouteChild } from './routes'
 
 // Type declaration for maskAPI
 declare global {
@@ -8,6 +9,18 @@ declare global {
       onSetMaskVisibility: (callback: (value: boolean) => void) => void
     }
   }
+}
+
+// Helper function to render routes with children
+const renderRoutes = (routes: RouteConfig[]): React.JSX.Element[] => {
+  return routes.map((route, index) => (
+    <Route key={index} path={route.path} element={route.element}>
+      {route.children &&
+        route.children.map((child: RouteChild, childIndex: number) => (
+          <Route key={childIndex} index={child.index} path={child.path} element={child.element} />
+        ))}
+    </Route>
+  ))
 }
 
 function App(): React.JSX.Element {
@@ -26,18 +39,11 @@ function App(): React.JSX.Element {
   return (
     <HashRouter>
       <div
-        className="fixed h-full w-full bg-black z-50"
+        className="fixed h-full w-full bg-gray-400 z-50"
         style={{ display: isMaskVisible ? 'block' : 'none' }}
       ></div>
 
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/about">About</Link>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<div className="h-full w-full text-7xl">Home Page</div>} />
-        <Route path="/about" element={<div className="h-full w-full text-7xl">About Page</div>} />
-      </Routes>
+      <Routes>{renderRoutes(routedPages)}</Routes>
     </HashRouter>
   )
 }
