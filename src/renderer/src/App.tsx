@@ -5,7 +5,7 @@ import routedPages, { RouteConfig, RouteChild } from './routes'
 // Type declaration for maskAPI
 declare global {
   interface Window {
-    maskAPI?: {
+    maskAPI: {
       onSetMaskVisibility: (callback: (value: boolean) => void) => void
     }
   }

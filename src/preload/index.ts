@@ -1,8 +1,23 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import type {
+  ExposedUtilityNames,
+  ExposedUtilityParams,
+  ExposedUtilityReturns
+} from '../main/exposedUtilities'
+
+// Create a typed callFunction for the renderer
+const callFunction = <T extends ExposedUtilityNames>(
+  functionName: T,
+  ...args: ExposedUtilityParams[T]
+): Promise<ExposedUtilityReturns[T]> => {
+  return ipcRenderer.invoke('callFunction', functionName, ...args)
+}
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  callFunction
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
