@@ -1,10 +1,10 @@
+import { useTypedNavigate } from '@renderer/utils/navigatorHook'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const NewSpace: React.FC = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const navigate = useNavigate()
+  const navigate = useTypedNavigate()
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault()
@@ -15,7 +15,7 @@ const NewSpace: React.FC = () => {
     }
     try {
       await window.api.callFunction('createNewSpace', title, description)
-      navigate('/')
+      navigate('spaces')
     } catch (error) {
       console.error('Error creating space:', error)
     }

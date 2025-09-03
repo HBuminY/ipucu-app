@@ -1,13 +1,18 @@
+import db from './db/index'
+import { spacesTable } from './db/schema'
+
 const DB = {
   createNewSpace: async (title: string, description?: string) => {
-    // return await db
-    //   .insertInto('spaces')
-    //   .values({ title, description })
-    //   .returningAll()
-    //   .executeTakeFirstOrThrow()
+    const now = Date.now()
+    return await db.insert(spacesTable).values({
+      title,
+      description,
+      created_at: now,
+      updated_at: now
+    })
   },
   getAllSpaces: async () => {
-    return await db.selectFrom('spaces').selectAll().execute()
+    return await db.select().from(spacesTable)
   }
 }
 const System = {
