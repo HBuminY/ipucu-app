@@ -55,7 +55,7 @@ const Layout: React.FC = () => {
         <Navbar />
       </div>
 
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto p-10">
         <Outlet />
       </main>
     </div>

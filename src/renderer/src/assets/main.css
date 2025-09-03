@@ -40,4 +40,17 @@ body {
 
 html, body {
   background-color: rgba(0, 0, 0, 0.01); 
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #2c2c2c; /* Dark blue for the track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #ffffff42; /* Gray for the thumb */
+    border-radius: 4px;
+  }
 }

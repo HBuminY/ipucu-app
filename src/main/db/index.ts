@@ -3,7 +3,7 @@ import SQLite from 'better-sqlite3'
 import { Kysely, SqliteDialect } from 'kysely'
 
 const dialect = new SqliteDialect({
-  database: new SQLite(':memory:')
+  database: new SQLite('./database.db')
 })
 
 // Database interface is passed to Kysely's constructor, and from now on, Kysely
