@@ -1,29 +1,17 @@
+import { db } from './db/index'
+
 const DB = {
-  getUser: (id: string | number) => {
-    // Simulate a database call
-    return { id, name: 'John Doe' }
+  createNewSpace: async (title: string, description?: string) => {
+    return await db
+      .insertInto('spaces')
+      .values({ title, description })
+      .returningAll()
+      .executeTakeFirstOrThrow()
   },
-  createUser: (name: string, email: string) => {
-    // Simulate creating a user
-    return { id: Date.now(), name, email, created: new Date() }
-  },
-  deleteUser: (id: string | number) => {
-    // Simulate deleting a user
-    return { success: true, deletedId: id }
+  getAllSpaces: async () => {
+    return await db.selectFrom('spaces').selectAll().execute()
   }
 }
-
-const FileSystem = {
-  readTextFile: (path: string) => {
-    // Simulate reading a file
-    return `Content of ${path}`
-  },
-  writeTextFile: (path: string, content: string) => {
-    // Simulate writing a file
-    return { success: true, path, bytesWritten: content.length }
-  }
-}
-
 const System = {
   getSystemInfo: () => {
     return {
@@ -40,7 +28,6 @@ const System = {
 
 export const exposedUtilities = {
   ...DB,
-  ...FileSystem,
   ...System
 } as const
 
