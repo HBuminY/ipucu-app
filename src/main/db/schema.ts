@@ -1,24 +1,9 @@
-import {
-  ColumnType,
-  Generated,
-  Insertable,
-  /*JSONColumnType,*/
-  Selectable,
-  Updateable
-} from 'kysely'
+import { int, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
-export interface Database {
-  spaces: SpacesTable
-}
-
-export interface SpacesTable {
-  id: Generated<number>
-  title: string
-  description: string | null
-
-  created_at: ColumnType<Date, string | undefined, never>
-  updated_at: ColumnType<Date, string | undefined, never>
-}
-export type Spaces = Selectable<SpacesTable>
-export type NewSpaces = Insertable<SpacesTable>
-export type SpacesUpdate = Updateable<SpacesTable>
+export const spacesTable = sqliteTable('spaces', {
+  id: int().primaryKey({ autoIncrement: true }),
+  title: text().notNull(),
+  description: text(),
+  created_at: int().notNull(),
+  updated_at: int().notNull()
+})

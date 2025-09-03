@@ -1,12 +1,10 @@
-import { db } from './db/index'
-
 const DB = {
   createNewSpace: async (title: string, description?: string) => {
-    return await db
-      .insertInto('spaces')
-      .values({ title, description })
-      .returningAll()
-      .executeTakeFirstOrThrow()
+    // return await db
+    //   .insertInto('spaces')
+    //   .values({ title, description })
+    //   .returningAll()
+    //   .executeTakeFirstOrThrow()
   },
   getAllSpaces: async () => {
     return await db.selectFrom('spaces').selectAll().execute()
