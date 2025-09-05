@@ -1,5 +1,8 @@
 import db from './db/index'
 import { spacesTable } from './db/schema'
+import { eq } from 'drizzle-orm'
+
+// Database related functions
 
 const DB = {
   createNewSpace: async (title: string, description?: string) => {
@@ -10,6 +13,9 @@ const DB = {
       created_at: now,
       updated_at: now
     })
+  },
+  deleteSpace: async (id: number) => {
+    return await db.delete(spacesTable).where(eq(spacesTable.id, id))
   },
   getAllSpaces: async () => {
     return await db.select().from(spacesTable)
