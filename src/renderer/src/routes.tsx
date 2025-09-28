@@ -1,21 +1,8 @@
-import React from 'react'
 import Home from './pages/home'
 import Spaces from './pages/spaces'
 import Layout from './components/Layout'
 import NewSpace from './pages/newSpace'
-
-// Define types for routes
-export interface RouteChild {
-  readonly index?: boolean
-  readonly path?: string
-  readonly element: React.JSX.Element
-}
-
-export interface RouteConfig {
-  readonly path: string
-  readonly element: React.JSX.Element
-  readonly children?: readonly RouteChild[]
-}
+import EditSpace from './pages/editSpace'
 
 const routedPages = [
   {
@@ -34,6 +21,14 @@ const routedPages = [
         path: 'new-space',
         element: <NewSpace />
       }
+    ]
+  },
+  {
+    path: '/edit-spaces/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <div className="text-black">this is edit spaces page</div> },
+      { path: ':spaceId', element: <EditSpace /> }
     ]
   }
 ] as const

@@ -10,6 +10,7 @@ const DB = {
     return await db.insert(spacesTable).values({
       title,
       description,
+      jsonContent: '{}',
       created_at: now,
       updated_at: now
     })
