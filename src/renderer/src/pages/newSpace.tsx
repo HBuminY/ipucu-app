@@ -1,4 +1,4 @@
-import { useTypedNavigate } from '@renderer/utils/navigatorHook'
+import { useTypedNavigate } from '@renderer/hooks/navigatorHook'
 import React, { useState } from 'react'
 
 const NewSpace: React.FC = () => {

@@ -6,15 +6,15 @@ import NewSpace from './pages/newSpace'
 
 // Define types for routes
 export interface RouteChild {
-  index?: boolean
-  path?: string
-  element: React.JSX.Element
+  readonly index?: boolean
+  readonly path?: string
+  readonly element: React.JSX.Element
 }
 
 export interface RouteConfig {
-  path: string
-  element: React.JSX.Element
-  children?: RouteChild[]
+  readonly path: string
+  readonly element: React.JSX.Element
+  readonly children?: readonly RouteChild[]
 }
 
 const routedPages = [

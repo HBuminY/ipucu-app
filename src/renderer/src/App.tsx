@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import routedPages, { RouteConfig, RouteChild } from './routes'
+import { DynamicNavProvider } from './context/DynamicNavContext'
 
 // Type declaration for maskAPI
 declare global {
@@ -12,7 +13,7 @@ declare global {
 }
 
 // Helper function to render routes with children
-const renderRoutes = (routes: RouteConfig[]): React.JSX.Element[] => {
+const renderRoutes = (routes: readonly RouteConfig[]): React.JSX.Element[] => {
   return routes.map((route, index) => (
     <Route key={index} path={route.path} element={route.element}>
       {route.children &&
@@ -37,14 +38,16 @@ function App(): React.JSX.Element {
   }, [])
 
   return (
-    <HashRouter>
-      <div
-        className="fixed h-full w-full bg-gray-400 z-50"
-        style={{ display: isMaskVisible ? 'block' : 'none' }}
-      ></div>
+    <DynamicNavProvider>
+      <HashRouter>
+        <div
+          className="fixed h-full w-full bg-gray-400 z-50"
+          style={{ display: isMaskVisible ? 'block' : 'none' }}
+        ></div>
 
-      <Routes>{renderRoutes(routedPages)}</Routes>
-    </HashRouter>
+        <Routes>{renderRoutes(routedPages)}</Routes>
+      </HashRouter>
+    </DynamicNavProvider>
   )
 }
 
