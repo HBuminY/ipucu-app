@@ -13,6 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else: ind = Project.cards.size()-1
 		Focus.set_focus(Project.cards[ind]);
 		get_viewport().set_input_as_handled()
+	
 	if event.is_action_pressed("navigate_right") || event.is_action_pressed("navigate_jump"):
 		if Project.cards.has(Focus.focused_node):
 			var ind = Project.cards.find(Focus.focused_node);
@@ -20,6 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			else: ind=0;
 			Focus.set_focus(Project.cards[ind]);
 			get_viewport().set_input_as_handled()
-	if event.is_action_pressed("navigate_jump") && Project.cards.size()>0 && Focus.focused_node==null:
-		Focus.set_focus(Project.cards[0])
-		get_viewport().set_input_as_handled()
+			
+		if event.is_action_pressed("navigate_jump") && Project.cards.size()>0 && Focus.focused_node==null:
+			Focus.set_focus(Project.cards[0])
+			get_viewport().set_input_as_handled()

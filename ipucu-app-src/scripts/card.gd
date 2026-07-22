@@ -1,13 +1,12 @@
 extends PanelContainer
 class_name Card
-var card_index = 0;
 var card_name: String;
 var card_items:Array[CardItem];
 const CardItemScn = preload("res://scenes/card_item.tscn")
 
 func _ready() -> void:
 	Focus.set_focus(self)
-	card_index = Project.add_card(self)
+	%Label.text=str(Project.add_card(self))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
@@ -21,7 +20,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			$ScrollContainer.set_deferred("scroll_vertical", 9999999)
 			
 		if event.is_action_pressed("navigate_down"):
-			pass;
+			if Focus.focused_node==self:
+				Focus.set_focus(card_items[0])
+			#if card_items.has(Focus.focused_node):
+				#var ind = card_items.find(Focus.focused_node);
+				#if ind<card_items.size()-1:ind+=1;
+				#Focus.set_focus(card_items[ind]);
+			
 				
-		if event.is_action_pressed("navigate_up"):
-			pass;
+		if event.is_action_pressed("navigate_up") && card_items.has(Focus.focused_node):
+			var ind = card_items.find(Focus.focused_node);
+			if ind<card_items.size()-1:ind+=1;
+			Focus.set_focus(card_items[ind]);
+			get_viewport().set_input_as_handled()

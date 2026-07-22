@@ -24,14 +24,29 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/VBoxContainer" unique_id=879532348]
-custom_minimum_size = Vector2(0, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1778388835]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1519073078]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_type_variation = &"card_item"
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer" unique_id=1450246554]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PanelContainer2" unique_id=1132804182]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=879532348]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"card_item"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1450246554]
 layout_mode = 2
 theme_type_variation = &"margin_small"
 
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1605469426]
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=1605469426]
 layout_mode = 2
