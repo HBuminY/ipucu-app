@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b056eoi2dg04x"]
+
+[ext_resource type="Script" uid="uid://c84l3mq7mxep8" path="res://scripts/columns.gd" id="1_3e3xe"]
+
+[node name="columns" type="ScrollContainer" unique_id=538432115]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+script = ExtResource("1_3e3xe")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=362665548]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1840222291]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

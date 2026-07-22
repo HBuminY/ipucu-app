@@ -1,3 +1,17 @@
 [gd_resource type="Theme" format=3 uid="uid://d4biapflfo04b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5783"]
+bg_color = Color(0.67204124, 0.787009, 0.7703163, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qxrq"]
+bg_color = Color(0.9262112, 0.7377252, 0.30484578, 1)
+
 [resource]
+HBoxContainer/constants/separation = 16
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_i5783")
+card/base_type = &"PanelContainer"
+card/styles/panel = SubResource("StyleBoxFlat_3qxrq")
