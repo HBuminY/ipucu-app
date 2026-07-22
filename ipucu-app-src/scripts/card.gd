@@ -13,20 +13,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
 		if event.is_action_pressed("escape"):
 			Focus.clear_focus()
-		if event.is_action_pressed("navigate_left") && card_index>0:
-			var node = Project.cards[card_index-1];
-			Focus.set_focus(node)
-			get_viewport().set_input_as_handled()
-		if event.is_action_pressed("navigate_right") || event.is_action_pressed("navigate_jump"):
-			if card_index<Project.cards.size()-1:
-				var node = Project.cards[card_index+1]
-				Focus.set_focus(node)
+				
 		if event.is_action_pressed("add_new"):
 			var new_item = CardItemScn.instantiate();	
 			$ScrollContainer/VBoxContainer.add_child(new_item);
 			card_items.append(new_item);
 			$ScrollContainer.set_deferred("scroll_vertical", 9999999)
+			
 		if event.is_action_pressed("navigate_down"):
 			pass;
+				
 		if event.is_action_pressed("navigate_up"):
 			pass;
