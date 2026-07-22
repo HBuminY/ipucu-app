@@ -14,7 +14,6 @@ class OutlineDrawer extends Control:
 		var rect = Rect2(Vector2.ZERO, size)
 		draw_rect(rect, outline_color, false, thickness)
 
-
 func set_outline(node: Control, state: bool, color: Color = Color.CYAN, thickness: float = 3.0) -> void:
 	if not is_instance_valid(node):
 		return
@@ -35,10 +34,17 @@ func set_outline(node: Control, state: bool, color: Color = Color.CYAN, thicknes
 			drawer.queue_redraw()
 			drawer.queue_free()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		# Check if it was a LEFT CLICK and it was just PRESSED DOWN
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed or event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			clear_focus();
+
 func set_focus(node:Control):
 	set_outline(focused_node, false);
 	focused_node=node;
 	set_outline(node, true);
+	node.grab_focus();
 	
 func clear_focus():
 	set_outline(focused_node, false);

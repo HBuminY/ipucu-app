@@ -1,15 +1,8 @@
 extends Node
 
-class CardData:
-	var name: String
-	var node: Control
-	func _init(n: String, c:Control):
-		name = n
-		node = c
+var cards:Array[Card] = [];
 
-var cards:Array[CardData]=[]
-
-func create_card(name:String, node:Control)->int:
-	var new_card:CardData = CardData.new(name, node)
-	cards.append(new_card)
+##Adds a Card node to the project list
+func add_card(card:Card)->int:
+	cards.append(card)
 	return cards.size()-1;

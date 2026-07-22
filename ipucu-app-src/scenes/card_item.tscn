@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cvwfteiide21e"]
+
+[ext_resource type="Script" uid="uid://blx35npxapr0g" path="res://scripts/card_item.gd" id="1_wad81"]
+
+[node name="card_item" type="MarginContainer" unique_id=1910491410]
+offset_right = 168.0
+offset_bottom = 71.0
+theme_type_variation = &"margin_small"
+script = ExtResource("1_wad81")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1847449653]
+layout_mode = 2
+theme_type_variation = &"card_item"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2126459145]
+layout_mode = 2
+theme_type_variation = &"margin_small"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1289479792]
+layout_mode = 2
+theme_type_variation = &"card_item"
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=773715684]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=375042510]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_type_variation = &"toggle_button"
+toggle_mode = true
