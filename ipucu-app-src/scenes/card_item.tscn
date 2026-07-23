@@ -5,6 +5,7 @@
 [node name="card_item" type="MarginContainer" unique_id=1910491410]
 offset_right = 168.0
 offset_bottom = 71.0
+focus_mode = 2
 theme_type_variation = &"margin_small"
 script = ExtResource("1_wad81")
 
@@ -21,10 +22,12 @@ layout_mode = 2
 theme_type_variation = &"card_item"
 
 [node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=773715684]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=375042510]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_type_variation = &"toggle_button"
