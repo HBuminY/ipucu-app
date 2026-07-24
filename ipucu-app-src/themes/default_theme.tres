@@ -1,34 +1,46 @@
 [gd_resource type="Theme" format=3 uid="uid://d4biapflfo04b"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5783"]
-bg_color = Color(0.67204124, 0.787009, 0.7703163, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qxrq"]
-bg_color = Color(0.9262112, 0.7377252, 0.30484578, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2632"]
-bg_color = Color(0.6251578, 0.47440583, 0.16899318, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u4wf"]
+bg_color = Color(0.14901961, 0.105882354, 0.078431375, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d81rb"]
+bg_color = Color(0.14901961, 0.105882354, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fdng"]
+bg_color = Color(0.14901961, 0.105882354, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5783"]
+bg_color = Color(0.14901961, 0.105882354, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qxrq"]
+bg_color = Color(0.92831075, 0.8808137, 0.85173744, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_takhu"]
+bg_color = Color(0.14901961, 0.105882354, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpelh"]
 bg_color = Color(0.5098309, 0.92146057, 0.42399722, 1)
 
 [resource]
 HBoxContainer/constants/separation = 16
+HBox_small/base_type = &"HBoxContainer"
+HBox_small/constants/separation = 5
 Label/font_sizes/font_size = 32
+LineEdit/styles/focus = SubResource("StyleBoxFlat_6u4wf")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_d81rb")
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_8fdng")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_i5783")
 card/base_type = &"PanelContainer"
 card/styles/panel = SubResource("StyleBoxFlat_3qxrq")
-card_item/base_type = &"PanelContainer"
-card_item/constants/separation = 16
-card_item/styles/panel = SubResource("StyleBoxFlat_e2632")
 margin_small/base_type = &"MarginContainer"
-margin_small/constants/margin_bottom = 10
-margin_small/constants/margin_left = 10
-margin_small/constants/margin_right = 10
-margin_small/constants/margin_top = 10
+margin_small/constants/margin_bottom = 5
+margin_small/constants/margin_left = 5
+margin_small/constants/margin_right = 5
+margin_small/constants/margin_top = 5
 toggle_button/base_type = &"Button"
-toggle_button/styles/pressed = SubResource("StyleBoxFlat_d81rb")
+toggle_button/styles/normal = SubResource("StyleBoxFlat_takhu")
+toggle_button/styles/pressed = SubResource("StyleBoxFlat_mpelh")

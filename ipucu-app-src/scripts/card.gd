@@ -8,6 +8,15 @@ func _ready() -> void:
 	Focus.set_focus(self)
 	%Label.text=str(Project.add_card(self))
 
+func get_col_controller() -> ColController:
+	var current_parent = self.get_parent()
+	while current_parent != null:
+		if current_parent is ColController:
+			return current_parent
+		current_parent = current_parent.get_parent()
+	return null
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
 		if event.is_action_pressed("escape"):
@@ -39,6 +48,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("navigate_down"):
 			if not card_items.is_empty():
 				Focus.set_focus(card_items[0])
+				get_viewport().set_input_as_handled()
+		
+		if event.is_action_pressed("navigate_up"):
+			if not card_items.is_empty():
+				Focus.set_focus(card_items[card_items.size()-1])
 				get_viewport().set_input_as_handled()
 			
 		if event.is_action_pressed("enter_selected"):

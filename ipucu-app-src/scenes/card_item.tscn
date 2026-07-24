@@ -11,7 +11,7 @@ script = ExtResource("1_wad81")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1847449653]
 layout_mode = 2
-theme_type_variation = &"card_item"
+theme_type_variation = &"card"
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2126459145]
 layout_mode = 2
@@ -19,7 +19,7 @@ theme_type_variation = &"margin_small"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1289479792]
 layout_mode = 2
-theme_type_variation = &"card_item"
+theme_type_variation = &"HBox_small"
 
 [node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=773715684]
 unique_name_in_owner = true

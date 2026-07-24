@@ -6,16 +6,26 @@ var _bg_node #is the node that clears focus on click (e.g. background node)
 @export var focusable_classes:Array[String]=[]
 
 class OutlineDrawer extends Control:
-	var outline_color: Color = Color.CYAN
-	var thickness: float = 3.0
+	var outline_color: Color = Color(1, 1, 1, 1)
+	var thickness: float = 4
+	var fill_color: Color = Color(0, 1, 1, 0.03)
+	var corner_radius: int = 12 # Radius in pixels for the rounded corners
+
 	func _ready() -> void:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		if get_parent() is Control:
 			get_parent().resized.connect(queue_redraw)
+
 	func _draw() -> void:
 		var rect = Rect2(Vector2.ZERO, size)
-		draw_rect(rect, outline_color, false, thickness)
+		var style_box = StyleBoxFlat.new()
+		style_box.bg_color = fill_color
+		style_box.border_color = outline_color
+		style_box.set_border_width_all(thickness)
+		style_box.set_corner_radius_all(corner_radius)
+		draw_style_box(style_box, rect)
+
 
 func get_node_class_name(node: Node) -> String:
 	if not node:
@@ -27,8 +37,7 @@ func get_node_class_name(node: Node) -> String:
 			return custom_name
 	return node.get_class()
 
-
-func set_outline(node: Control, state: bool, color: Color = Color.CYAN, thickness: float = 3.0) -> void:
+func set_outline(node: Control, state: bool, color: Color = Color(1,1,1,0.5) , thickness: float = 5.0) -> void:
 	if not is_instance_valid(node):
 		return
 	var drawer = node.get_node_or_null("__OutlineDrawer__")
@@ -63,11 +72,17 @@ func clear_focus():
 	focused_node=null;
 
 func set_focus(node:Control):
-	if !focused_node == node:
+	if !focused_node == node and is_instance_valid(node):
 		set_outline(focused_node, false);
 		focused_node=node;
 		set_outline(node, true);
-		node.call_deferred('grab_focus')
+		node.call_deferred('grab_focus');
+		#static check if on app/columns for smooth scroll
+		var col_controller:ColController = get_node_or_null("/root/app/columns")
+		if col_controller != null:
+			await get_tree().process_frame
+			col_controller.smoothly_scroll_to(node, 50);
+			print(str(col_controller.target_scroll))
 
-func set_bg_node(node:Node):
+func set_bg_node(node:Control):
 		_bg_node=node;

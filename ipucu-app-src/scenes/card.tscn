@@ -16,6 +16,13 @@ theme = SubResource("Theme_3qxrq")
 theme_type_variation = &"card"
 script = ExtResource("1_6u4wf")
 
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1996063768]
+layout_mode = 2
+theme_type_variation = &"margin_small"
+
+[node name="ColorRect" type="Panel" parent="MarginContainer" unique_id=1372245087]
+layout_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1615302827]
 layout_mode = 2
 horizontal_scroll_mode = 0
@@ -31,7 +38,6 @@ layout_mode = 2
 [node name="PanelContainer2" type="PanelContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1519073078]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_type_variation = &"card_item"
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/PanelContainer2" unique_id=1132804182]
 unique_name_in_owner = true
@@ -43,7 +49,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"card_item"
+theme_type_variation = &"card"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1450246554]
 layout_mode = 2

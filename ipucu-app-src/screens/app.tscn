@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b056eoi2dg04x" path="res://scenes/columns.tscn" id="1_60tri"]
 [ext_resource type="Script" uid="uid://chdaa312gcy16" path="res://screens/label.gd" id="2_i5783"]
 
-[node name="PanelContainer" type="PanelContainer" unique_id=1399209643]
+[node name="app" type="PanelContainer" unique_id=1399209643]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,6 +16,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="." unique_id=2116455918]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("2_i5783")
