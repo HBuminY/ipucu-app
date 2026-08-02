@@ -1,21 +1,23 @@
 extends PanelContainer
 class_name Card
-var card_name: String;
+
+var manager:CardsManager;
 var card_items:Array[CardItem];
+var card_name:String='';
 const CardItemScn = preload("res://scenes/card_item.tscn")
 
 func _ready() -> void:
 	Focus.set_focus(self)
-	%Label.text=str(Project.add_card(self))
+	manager.cards.append(self);
 
-func get_col_controller() -> ColController:
-	var current_parent = self.get_parent()
-	while current_parent != null:
-		if current_parent is ColController:
-			return current_parent
-		current_parent = current_parent.get_parent()
-	return null
-
+func get_serialized()->Dictionary:
+	var serialized_card:Dictionary={
+		"name":card_name,
+		"items":[]
+		};
+	for item in card_items:
+		serialized_card.cards.assign(item.get_serialized())
+	return serialized_card;
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
@@ -24,17 +26,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 				
 		if event.is_action_pressed("navigate_left"):
-			var ind = Project.cards.find(self);
+			var ind = manager.cards.find(self);
 			if ind>0:ind-=1
-			else: ind = Project.cards.size()-1
-			Focus.set_focus(Project.cards[ind]);
+			else: ind = manager.cards.size()-1
+			Focus.set_focus(manager.cards[ind]);
 			get_viewport().set_input_as_handled()
 		
 		if event.is_action_pressed("navigate_right") || event.is_action_pressed("navigate_jump"):
-			var ind = Project.cards.find(self);
-			if ind<Project.cards.size()-1: ind+=1
+			var ind = manager.cards.find(self);
+			if ind<manager.cards.size()-1: ind+=1
 			else: ind=0;
-			Focus.set_focus(Project.cards[ind]);
+			Focus.set_focus(manager.cards[ind]);
 			get_viewport().set_input_as_handled()
 				
 		if event.is_action_pressed("add_new"):
@@ -56,8 +58,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 			
 		if event.is_action_pressed("enter_selected"):
-			if %LineEdit.has_focus():
-				call_deferred('grab_focus')
-			else: 
-				%LineEdit.call_deferred("grab_focus");
-				get_viewport().set_input_as_handled()
+			Focus.set_focus(%LineEdit)
+			get_viewport().set_input_as_handled()
+	elif Focus.focused_node==%LineEdit:
+		if event.is_action_pressed("escape") or event.is_action_pressed("enter_selected"):
+			Focus.set_focus(self);
+			get_viewport().set_input_as_handled()
+		
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	card_name = new_text;

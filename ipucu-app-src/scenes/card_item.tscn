@@ -32,3 +32,6 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_type_variation = &"toggle_button"
 toggle_mode = true
+
+[connection signal="text_changed" from="PanelContainer/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/HBoxContainer/Button" to="." method="_on_button_toggled"]

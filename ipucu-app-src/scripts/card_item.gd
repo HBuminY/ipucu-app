@@ -56,3 +56,15 @@ func _input(event: InputEvent) -> void:
 			if %Button.has_focus():
 				%LineEdit.call_deferred("grab_focus")
 			get_viewport().set_input_as_handled()
+
+func get_serialized()->Dictionary:
+	return{
+		"name":item_name,
+		"checked":item_checked
+	}
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	item_name=new_text;
+
+func _on_button_toggled(toggled_on: bool) -> void:
+	item_checked=toggled_on;

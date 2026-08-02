@@ -8,7 +8,7 @@ var _bg_node #is the node that clears focus on click (e.g. background node)
 class OutlineDrawer extends Control:
 	var outline_color: Color = Color(1, 1, 1, 1)
 	var thickness: float = 4
-	var fill_color: Color = Color(0, 1, 1, 0.03)
+	var fill_color: Color = Color(0, 1, 1, 0)
 	var corner_radius: int = 12 # Radius in pixels for the rounded corners
 
 	func _ready() -> void:
@@ -26,7 +26,6 @@ class OutlineDrawer extends Control:
 		style_box.set_corner_radius_all(corner_radius)
 		draw_style_box(style_box, rect)
 
-
 func get_node_class_name(node: Node) -> String:
 	if not node:
 		return ""
@@ -37,7 +36,7 @@ func get_node_class_name(node: Node) -> String:
 			return custom_name
 	return node.get_class()
 
-func set_outline(node: Control, state: bool, color: Color = Color(1,1,1,0.5) , thickness: float = 5.0) -> void:
+func set_outline(node: Control, state: bool, color: Color = Color(1,0,0,0.3) , thickness: float = 4) -> void:
 	if not is_instance_valid(node):
 		return
 	var drawer = node.get_node_or_null("__OutlineDrawer__")
@@ -70,6 +69,8 @@ func _input(event: InputEvent) -> void:
 func clear_focus():
 	set_outline(focused_node, false);
 	focused_node=null;
+	get_viewport().gui_release_focus()
+
 
 func set_focus(node:Control):
 	if !focused_node == node and is_instance_valid(node):
@@ -77,12 +78,14 @@ func set_focus(node:Control):
 		focused_node=node;
 		set_outline(node, true);
 		node.call_deferred('grab_focus');
-		#static check if on app/columns for smooth scroll
-		var col_controller:ColController = get_node_or_null("/root/app/columns")
-		if col_controller != null:
+		#static check if on app/cards_manager for smooth scroll
+		var cards_manager:CardsManager = get_node_or_null("/root/note_screen/cards_manager")
+		if cards_manager != null:
 			await get_tree().process_frame
-			col_controller.smoothly_scroll_to(node, 50);
-			print(str(col_controller.target_scroll))
+			cards_manager.smoothly_scroll_to(node, 50);
+			print(str(cards_manager.target_scroll))
+		else:
+			print("scene has no cards_manager to scroll")
 
 func set_bg_node(node:Control):
 		_bg_node=node;

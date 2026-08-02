@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b056eoi2dg04x"]
 
-[ext_resource type="Script" uid="uid://c84l3mq7mxep8" path="res://scripts/columns.gd" id="1_3e3xe"]
+[ext_resource type="Script" uid="uid://c84l3mq7mxep8" path="res://scripts/cards_manager.gd" id="1_ldh3p"]
 
-[node name="columns" type="ScrollContainer" unique_id=538432115]
+[node name="cards_manager" type="ScrollContainer" unique_id=538432115]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +11,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 vertical_scroll_mode = 0
-script = ExtResource("1_3e3xe")
+script = ExtResource("1_ldh3p")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=362665548]
 layout_mode = 2
