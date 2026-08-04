@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ceq50oau0meuu"]
+
+[ext_resource type="Script" uid="uid://e703tvsk870j" path="res://app.gd" id="1_qbwvd"]
+
+[node name="App" type="Control" unique_id=429598213]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_qbwvd")
+
+[node name="ScreenContainer" type="Control" parent="." unique_id=132690363]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingScreen" type="Control" parent="." unique_id=1866996038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" unique_id=677283324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="LoadingScreen/ColorRect" unique_id=2127177231]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -22.5
+offset_right = 61.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1

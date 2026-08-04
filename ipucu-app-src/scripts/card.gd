@@ -9,15 +9,27 @@ const CardItemScn = preload("res://scenes/card_item.tscn")
 func _ready() -> void:
 	Focus.set_focus(self)
 	manager.cards.append(self);
+	%LineEdit.text = card_name
 
 func get_serialized()->Dictionary:
 	var serialized_card:Dictionary={
 		"name":card_name,
 		"items":[]
 		};
+	var serialized_items:Array[Dictionary] = [];
 	for item in card_items:
-		serialized_card.cards.assign(item.get_serialized())
+		serialized_items.append(item.get_serialized())
+	serialized_card.items = serialized_items;
 	return serialized_card;
+
+func add_item(text:String="", checked:bool=false):
+	var new_item:CardItem = CardItemScn.instantiate();
+	new_item.parent_card=self;
+	new_item.item_name=text;
+	new_item.item_checked=checked;
+	$ScrollContainer/VBoxContainer.add_child(new_item);
+	card_items.append(new_item);
+	manager.trigger_save();
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
@@ -40,10 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 				
 		if event.is_action_pressed("add_new"):
-			var new_item:CardItem = CardItemScn.instantiate();
-			new_item.parent_card=self;
-			$ScrollContainer/VBoxContainer.add_child(new_item);
-			card_items.append(new_item);
+			add_item();
 			$ScrollContainer.set_deferred("scroll_vertical", 9999999)
 			get_viewport().set_input_as_handled()
 			
@@ -68,3 +77,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	card_name = new_text;
+	manager.trigger_save();

@@ -6,6 +6,10 @@ var item_checked:bool;
 var parent_card:Card;
 var is_on_edit:bool;
 
+func _ready() -> void:
+	%LineEdit.text = item_name;
+	%Button.button_pressed = item_checked;
+
 func _input(event: InputEvent) -> void:
 	if Focus.focused_node==self:
 		if event.is_action_pressed('navigate_down'):
@@ -65,6 +69,8 @@ func get_serialized()->Dictionary:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	item_name=new_text;
+	parent_card.manager.trigger_save()
 
 func _on_button_toggled(toggled_on: bool) -> void:
 	item_checked=toggled_on;
+	parent_card.manager.trigger_save()

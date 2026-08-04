@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://dh3f72iqav8s4"]
 
+[ext_resource type="Script" uid="uid://cx66odx85ukmq" path="res://scripts/menu.gd" id="1_dc0yw"]
+[ext_resource type="PackedScene" uid="uid://dkofoonsnfnhr" path="res://scenes/project_menu_button.tscn" id="2_o3ram"]
+
 [node name="Menu" type="PanelContainer" unique_id=560658704]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_dc0yw")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1693034288]
 layout_mode = 2
@@ -25,10 +31,9 @@ layout_mode = 2
 text = "create new note"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer" unique_id=1545456459]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer" unique_id=1477290494]
+[node name="ProjectMenuButton" parent="MarginContainer/HBoxContainer/ScrollContainer" unique_id=1406590315 instance=ExtResource("2_o3ram")]
 layout_mode = 2
-theme_type_variation = &"label_small"
-text = "test"

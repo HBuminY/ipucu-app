@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b3k45eevo10l1"]
 
-[ext_resource type="Script" uid="uid://d2qscnfxk2sec" path="res://singletons/focus_controller.gd" id="1_takhu"]
+[ext_resource type="Script" uid="uid://d2qscnfxk2sec" path="res://scripts/singletons/focus_controller.gd" id="1_takhu"]
 
 [node name="Node" type="Node" unique_id=600008262]
 script = ExtResource("1_takhu")

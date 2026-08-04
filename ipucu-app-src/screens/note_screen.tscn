@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dfg8egjik51ip"]
 
+[ext_resource type="Script" uid="uid://4sng14bcijj1" path="res://scripts/note_screen.gd" id="1_g3l55"]
 [ext_resource type="PackedScene" uid="uid://b056eoi2dg04x" path="res://scenes/cards_manager.tscn" id="1_uivbe"]
 [ext_resource type="Script" uid="uid://chdaa312gcy16" path="res://scripts/label.gd" id="2_g3l55"]
 
@@ -11,8 +12,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_g3l55")
 
 [node name="cards_manager" parent="." unique_id=538432115 instance=ExtResource("1_uivbe")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="." unique_id=2116455918]
